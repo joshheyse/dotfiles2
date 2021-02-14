@@ -25,7 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'jabirali/vim-tmux-yank'
+Plug 'fcpg/vim-osc52'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -37,6 +37,8 @@ Plug 'neoclide/jsonc.vim'
 
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'jparise/vim-graphql'
+
+Plug 'nikvdp/ejs-syntax'
 
 Plug 'ctrlpvim/ctrlp.vim'
 
@@ -147,6 +149,8 @@ set nofoldenable
 
 " Toggle Paste Mode
 set pastetoggle=<F2>
+
+vnoremap <leader>y y:call SendViaOSC52(getreg('"'))<cr>
 
 " Change Remove need for W during window movement keys
 nnoremap <c-h> <c-w>h
