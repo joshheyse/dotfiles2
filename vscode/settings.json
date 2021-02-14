@@ -1,0 +1,183 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "telemetry.enableTelemetry": false,
+    "editor.renderLineHighlight": "gutter",
+    "editor.tabSize": 2,
+    "editor.minimap.enabled": false,
+    "terminal.integrated.env.osx": {
+        "PATH": ""
+    },
+    "terminal.integrated.shellArgs.linux": [
+        "-l"
+    ],
+    "editor.cursorBlinking": "blink",
+    "editor.formatOnSave": false,
+    "vim.useCtrlKeys": true,
+    "vim.smartcase": true,
+    "vim.hlsearch": true,
+    "vim.autoindent": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [ "leader", "r" ],
+            "commands": [
+                {
+                    "command": "workbench.files.action.showActiveFileInExplorer",
+                    "args": []
+                },
+                {
+                    "command": "workbench.files.action.focusFilesExplorer",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [ "leader", "d" ],
+            "commands": [
+                {
+                    "command": "workbench.action.toggleSidebarVisibility",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [ "leader", "e" ],
+            "commands": [
+                {
+                    "command": "editor.action.rename",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [ "leader", "c", "c" ],
+            "commands": [
+                {
+                    "command": "editor.action.addCommentLine",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [ "leader", "c", "u" ],
+            "commands": [
+                {
+                    "command": "editor.action.removeCommentLine",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [ "leader", "g", "d" ],
+            "commands": [
+                {
+                    "command": "editor.action.goToDeclaration",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [ "leader", "g", "i" ],
+            "commands": [
+                {
+                    "command": "editor.action.goToImplementation",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [ "leader", "g", "r" ],
+            "commands": [
+                {
+                    "command": "editor.action.referenceSearch.trigger",
+                    "args": []
+                }
+            ]
+        },
+        {
+            "before": [ "leader", "h"],
+            "commands": [
+                {
+                    "command": "editor.action.showHover",
+                    "args": []
+                }
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [ "<leader>", "c", "c" ],
+            "commands": [
+                "editor.action.addCommentLine"
+            ]
+        },
+        {
+            "before": [ "<leader>", "c", "u" ],
+            "commands": [
+                "editor.action.removeCommentLine"
+            ]
+        },
+        {
+            "before": [ ">" ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [ "<" ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        },
+    ],
+    "window.zoomLevel": 0,
+    "files.exclude": {
+        "**/.*": false,
+        "**/*.pyc": true,
+        "**/__pycache__": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "submodules/tango_gui/src/": true,
+        "submodules/salsa/src/": true,
+        "submodules/tango_gui/submodules/": true,
+        "build/": true
+    },
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+    "typescript.preferences.quoteStyle": "single",
+    "javascript.preferences.quoteStyle": "single",
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "workbench.iconTheme": "vscode-icons",
+    "editor.folding": false,
+    "editor.hover.delay": 100,
+    "workbench.colorTheme": "Monokai",
+    "editor.renderIndentGuides": false,
+    "explorer.confirmDelete": false,
+    "files.autoSave": "off",
+    "explorer.confirmDragAndDrop": false,
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.suggestSelection": "first",
+    "python.languageServer": "Microsoft",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.semanticHighlighting.enabled": true,
+    "python.jediEnabled": false,
+    "[xml]": {
+        "editor.defaultFormatter": "fabianlauer.vs-code-xml-format"
+    },
+    "editor.fontFamily": "'MesloLGS NF'",
+    "terminal.integrated.inheritEnv": false,
+    "cmake.configureOnOpen": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "C_Cpp.updateChannel": "Insiders"
+}
