@@ -1,0 +1,80 @@
+#!/bin/sh
+
+color=$1
+dotfiles=~/.dotfiles
+alacritty=${dotfiles}/alacritty
+
+# Configure tmux
+configure_tmux() {
+  local tmux_color_conf=${dotfiles}/.tmux.color.conf
+  local bg_color=$(grep "background: '" ${dotfiles}/alacritty/${color}.yml | head -n 1 | cut -d "'" -f 2)
+  bg_color="#${bg_color:1}"
+
+  # Make the border lines unonbtrusive
+  tmux set -g pane-border-style "bg=default fg=${bg_color}"
+  tmux set -g pane-active-border-style "bg=default fg=${bg_color}"
+
+  # Save the colors into a config file for tmux reload.
+  cat > "${dotfiles}/.tmux.color.conf" <<-EOF
+    set -g pane-border-style "bg=default fg=${bg_color}"
+    set -g pane-active-border-style "bg=default fg=${bg_color}"
+EOF
+}
+
+configure() {
+  vim_config=$1
+
+  # Configure alacritty
+  cat ${alacritty}/base.yml ${alacritty}/${color}.yml > ${dotfiles}/.alacritty.yml
+
+  # Configure vim
+  echo ${vim_config} > ${dotfiles}/vim/color.vim
+
+  configure_tmux
+}
+
+case $color in
+  dracula)
+    configure 'colorscheme dracula'
+    ;;
+  nord)
+    configure 'colorscheme nord'
+    ;;
+  pink-moon)
+    configure 'colorscheme pink-moon'
+    ;;
+  ayu-light)
+    configure 'let ayucolor="light"\ncolorscheme ayu'
+    ;;
+  ayu-dark)
+    configure 'let ayucolor="dark"\ncolorscheme ayu'
+    ;;
+  seoul256)
+    configure 'let g:seoul256_background=235\ncolorscheme seoul256\nlet g:airline_theme="seoul256"'
+    ;;
+  seoul256-light)
+    configure 'let g:seoul256_light_background=255\ncolorscheme seoul256-light\nlet g:airline_theme="seoul256"'
+    ;;
+  firewatch)
+    configure 'set background=dark\ncolorscheme two-firewatch\nlet g:airline_theme="twofirewatch"'
+    ;;
+  firewatch-light)
+    configure 'set background=light\ncolorscheme two-firewatch\nlet g:airline_theme="twofirewatch"'
+    ;;
+  night-owl)
+    configure 'colorscheme night-owl'
+    ;;
+  mountaineer)
+    configure 'colorscheme mountaineer'
+    ;;
+  mountaineer-grey)
+    configure 'colorscheme mountaineer-grey'
+    ;;
+  mountaineer-light)
+    configure 'colorscheme mountaineer-light'
+    ;;
+  *)
+    echo "Supported colorschemes: dracula, nord, pink-moon, ayu-light, ayu-dark, seoul256, seoul256-light, firewatch, firewatch-light, night-owl, mountaineer, mountaineer-grey, mountaineer-light"
+    exit 1
+    ;;
+esac

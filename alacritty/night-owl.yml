@@ -1,0 +1,34 @@
+# https://github.com/calimaborges/alacritty-night-owl-colors
+# Colors (Night Owl by Sarah Drasner)
+colors:
+  # Default colors
+  primary:
+    background: '#011627'
+    foreground: '#d6deeb'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '#ffffff'
+    cursor: '#7e57c2'
+
+  # Normal colors
+  normal:
+    black:   '#000000'
+    red:     '#ef5350'
+    green:   '#22da6e'
+    yellow:  '#addb67'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#21c7a8'
+    white:   '#ffffff'
+
+  # Bright colors
+  bright:
+    black:   '#575656'
+    red:     '#ef5350'
+    green:   '#22da6e'
+    yellow:  '#ffeb95'
+    blue:    '#82aaff'
+    magenta: '#c792ea'
+    cyan:    '#7fdbca'
+    white:   '#ffffff'

@@ -24,12 +24,12 @@ fi
 export PATH="$HOME/.jenv/bin:$PATH"
 export PATH="$HOME/miniconda3/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.cargo/env:$PATH"
 export PATH="/usr/local/opt/awscli@1/bin:$PATH"
 export PATH="/usr/local/Cellar/gcc/10.2.0_3/bin:$PATH"
 export PATH="/usr/local/Cellar/llvm/11.0.1/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
 
 if command -v brew &> /dev/null; then
   export PATH=$(brew --prefix llvm)/bin:$PATH
@@ -83,6 +83,8 @@ FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
 if [[ ! -d ~/.zplug ]];then
     git clone https://github.com/b4b4r07/zplug ~/.zplug
 fi
+
+export ZSH_256COLOR_DEBUG="ANY"
 
 # Load Plugins
 source ~/.zplug/init.zsh
@@ -145,5 +147,6 @@ zplug load
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
+export TERM='screen-256color'
 
 export EDITOR=vim

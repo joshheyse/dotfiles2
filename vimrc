@@ -8,9 +8,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" set background=dark
+
 call plug#begin('~/.vim/plugged')
 
-Plug 'jsit/disco.vim'
+" Plug 'jsit/disco.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -19,34 +21,56 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 
+Plug 'bagrat/vim-buffet'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+
 Plug 'scrooloose/nerdcommenter'
 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'fcpg/vim-osc52'
+Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'ctrlpvim/ctrlp.vim'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/jsonc.vim'
+Plug 'puremourning/vimspector'
 
+Plug 'neoclide/jsonc.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'jparise/vim-graphql'
-
 Plug 'nikvdp/ejs-syntax'
 
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dracula/vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'sts10/vim-pink-moon'
+Plug 'rakr/vim-two-firewatch'
+Plug 'junegunn/seoul256.vim'
+Plug 'haishanh/night-owl.vim'
+Plug 'co1ncidence/mountaineer.vim'
 
 
 call plug#end()
 filetype plugin indent on    " required
 
 let g:airline_powerline_fonts = 1
+
+
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+let color_path = expand('~/.vim/color.vim')
+if filereadable(color_path)
+  exec 'source' color_path
+else
+  colorscheme pink-moon
+endif
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 "set clipboard=unnamed
@@ -209,12 +233,16 @@ function! StripWhitespace()
 endfunction
 noremap <leader>ww :call StripWhitespace()<CR>
 
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
-
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
-let g:ctrlp_working_path_mode = 'ra'
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+let g:Lf_ShortcutF = "<C-p>"
+" let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
