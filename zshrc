@@ -128,8 +128,10 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias gc='git commit -m '
 alias gca='git commit -a -m '
+alias gco='git checkout'
 alias gpd='git pull'
 alias gpu='git push'
+alias gpp='git pull && git push'
 
 # Actually install plugins, prompt user input
 if ! zplug check --verbose; then
