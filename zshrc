@@ -104,15 +104,6 @@ zplug "zsh-users/zsh-completions"
 zplug "nnao45/zsh-kubectl-completion"
 zplug "greymd/docker-zsh-completion"
 
-case `uname` in
-  Darwin)
-    export SSH_AUTH_SOCK=/Users/josh/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-  ;;
-  Linux)
-    zplug "bobsoppe/zsh-ssh-agent", use:ssh-agent.zsh, from:github
-  ;;
-esac
-
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
 
