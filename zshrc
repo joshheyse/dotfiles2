@@ -13,22 +13,19 @@ if [ -d "$secretive" ]; then
   export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 fi
 
-SOCK="/tmp/ssh-agent-$USER-screen"
-if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
-then
-    rm -f /tmp/ssh-agent-$USER-screen
-    ln -sf $SSH_AUTH_SOCK $SOCK
-    export SSH_AUTH_SOCK=$SOCK
-fi
+# SOCK="/tmp/ssh-agent-$USER-screen"
+# if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
+# then
+#     rm -f /tmp/ssh-agent-$USER-screen
+#     ln -sf $SSH_AUTH_SOCK $SOCK
+#     export SSH_AUTH_SOCK=$SOCK
+# fi
 
 export PATH="$HOME/.jenv/bin:$PATH"
-export PATH="$HOME/miniconda3/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.cargo/env:$PATH"
+export PATH="$HOME/.cargo/env:$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/awscli@1/bin:$PATH"
-export PATH="/usr/local/Cellar/gcc/10.2.0_3/bin:$PATH"
-export PATH="/usr/local/Cellar/llvm/11.0.1/bin:$PATH"
+export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
 if command -v brew &> /dev/null; then
@@ -40,6 +37,7 @@ fi
 if [[ $(pwd) == /mnt/c/* ]]; then
   cd ~
 fi
+
 # Use the VIM-like keybindings
 bindkey -v
 
@@ -76,10 +74,6 @@ bindkey '^f' autosuggest-accept
 # Gray color for autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=247'
 
-# fzf settings. Uses sharkdp/fd for a faster alternative to `find`.
-FZF_CTRL_T_COMMAND='fd --type f --hidden --exclude .git --exclude .cache'
-FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
-
 if [[ ! -d ~/.zplug ]];then
     git clone https://github.com/b4b4r07/zplug ~/.zplug
 fi
@@ -91,8 +85,16 @@ source ~/.zplug/init.zsh
 zplug "zpm-zsh/colors"
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 
+if command -v fzf &> /dev/null; then
+	zplug "junegunn/fzf-bin", \
+			from:gh-r, \
+			as:command, \
+			rename-to:fzf, \
+			use:"*linux*amd64*"
+	zplug "junegunn/fzf", use:"shell/*.zsh", defer:2
+fi
+
 zplug "zpm-zsh/autoenv"
-zplug "junegunn/fzf", use:"shell/*.zsh"
 zplug "zpm-zsh/ls"
 zplug "zpm-zsh/ssh"
 zplug "zsh-users/zsh-history-substring-search", defer:3
@@ -103,15 +105,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "nnao45/zsh-kubectl-completion"
 zplug "greymd/docker-zsh-completion"
-
-case `uname` in
-  Darwin)
-    export SSH_AUTH_SOCK=/Users/josh/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-  ;;
-  Linux)
-    zplug "bobsoppe/zsh-ssh-agent", use:ssh-agent.zsh, from:github
-  ;;
-esac
+zplug "agkozak/zsh-z"
 
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
