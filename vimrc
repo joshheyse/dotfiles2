@@ -41,6 +41,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'puremourning/vimspector'
 Plug 'PeterRincker/vim-argumentative'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 Plug 'neoclide/jsonc.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
