@@ -32,6 +32,7 @@ Plug 'fcpg/vim-osc52'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'RobertAudi/GoldenView.vim'
+Plug 'TaDaa/vimade'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -46,6 +47,8 @@ Plug 'neoclide/jsonc.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'jparise/vim-graphql'
 Plug 'nikvdp/ejs-syntax'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 Plug 'dracula/vim'
 Plug 'ayu-theme/ayu-vim'
@@ -284,13 +287,9 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
-" Automatic commands
-if has("autocmd")
-  " Enable file type detection
-  filetype on
-  " Treat .md files as Markdown
-  autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-endif
+filetype on
+autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-tsserver', 'coc-eslint', 'coc-python', 'coc-rls']
 
