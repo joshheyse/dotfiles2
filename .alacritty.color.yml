@@ -1,0 +1,55 @@
+# Colors (Pink Moon)
+# https://gist.github.com/sts10/df620672662fe4c6f03ac296a02b8e72
+colors:
+  # Default colors
+  primary:
+    background: '#2A2E38'
+    foreground: '#F0FDFF'
+    # (Optional) Bright and Dim foreground colors
+    #
+    # The dimmed foreground color is calculated automatically if it is not present.
+    # If the bright foreground color is not set, or `draw_bold_text_with_bright_colors`
+    # is `false`, the normal foreground color will be used.
+    #
+    # dim_foreground: '#9a9a9a'
+    # bright_foreground: '#ffffff'
+  # Normal colors
+  normal:
+    black:   '#2a2e38'
+    red:     '#d08785'
+    green:   '#6f98b3'
+    yellow:  '#fdf8ce'
+    blue:    '#a6b8cc'
+    magenta: '#fcdbd9'
+    cyan:    '#ffd17f'
+    white:   '#f0fdff'
+  # Bright colors
+  bright:
+    black:   '#71798a'
+    red:     '#ff3334'
+    green:   '#9ec400'
+    yellow:  '#e7c547'
+    blue:    '#7aa6da'
+    magenta: '#b77ee0'
+    cyan:    '#54ced6'
+    white:   '#ffffff'
+  # Dim colors (Optional)
+  dim:
+    black:   '#333333'
+    red:     '#f2777a'
+    green:   '#99cc99'
+    yellow:  '#ffcc66'
+    blue:    '#6699cc'
+    magenta: '#cc99cc'
+    cyan:    '#66cccc'
+    white:   '#dddddd'
+  # Optional: Colors the cursor will use (test)
+  cursor:
+    text: '#2a2e38'
+    # cursor: '#71798a'
+    # cursor: '#F0FDFF'
+    # cursor: '#e6d3c6'
+    cursor: '#ffd17f'
+  selection:
+    text: '#2a2e38'
+    cursor: '#F0FDFF'

@@ -21,7 +21,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'bagrat/vim-buffet'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
 Plug 'scrooloose/nerdcommenter'
@@ -30,9 +29,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'fcpg/vim-osc52'
-Plug 'blueyed/vim-diminactive'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'RobertAudi/GoldenView.vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -62,13 +61,9 @@ call plug#end()
 filetype plugin indent on    " required
 
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
-
-if exists('+termguicolors')
-  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
+set termguicolors
 
 let color_path = expand('~/.vim/color.vim')
 if filereadable(color_path)
@@ -76,6 +71,8 @@ if filereadable(color_path)
 else
   colorscheme pink-moon
 endif
+
+set termguicolors
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 "set clipboard=unnamed
@@ -147,7 +144,11 @@ set fileformats=unix,dos,mac
 set laststatus=2
 " Enable mouse in all modes
 set mouse=a
-set ttymouse=sgr
+
+if !has("nvim")
+  " Use UTF-8 without BOM
+  set ttymouse=sgr
+endif
 
 " Disable error bells
 set noerrorbells
@@ -188,6 +189,8 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
 let g:diminactive_enable_focus = 1
+
+let g:goldenview__enable_at_startup = 1
 
 nmap <leader>1 <Plug>BuffetSwitch(1)
 nmap <leader>2 <Plug>BuffetSwitch(2)
@@ -286,7 +289,7 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
 
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-tsserver', 'coc-eslint', 'coc-python', 'coc-rls', 'coc-graphql']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-tsserver', 'coc-eslint', 'coc-python', 'coc-rls']
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -454,6 +457,8 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
 autocmd BufEnter tsconfig.json :setlocal filetype=jsonc
+
+hi Normal guibg=NONE ctermbg=NONE
 
 set exrc
 set secure
