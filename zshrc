@@ -157,7 +157,11 @@ alias gpu='git push -u origin HEAD'
 alias gpp='git pull && git push'
 
 function title() {
-  echo -e "\e]2;$1\007"
+  if [ -n "$TMUX" ]; then
+    tmux rename-window $1
+  else
+    echo -e "\e]2;$1\007"
+  fi
 }
 
 alias vim=nvim
