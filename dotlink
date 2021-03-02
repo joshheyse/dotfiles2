@@ -39,3 +39,7 @@
 ~/.dotfiles/vim,~/.vim
 ~/.dotfiles/vimrc,~/.vimrc
 ~/.dotfiles/zshrc,~/.zshrc
+~/.dotfiles/zsh_functions,~/.zsh_functions
+~/.dotfiles/vim/nvim/init.vim,~/.config/nvim/init.vim
+~/.dotfiles/vim/coc-settings.json,~/.config/nvim/coc-settings.json
+~/.dotfiles/powerline,~/.config/powerline

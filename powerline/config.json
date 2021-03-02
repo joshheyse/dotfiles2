@@ -2,7 +2,7 @@
 	"common": {
 		"term_truecolor": true
 	},
-	ext": {
+	"ext": {
 		"tmux": {
 			"colorscheme": "solarized",
 			"theme": "default"

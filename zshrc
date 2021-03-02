@@ -1,6 +1,15 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+
+# If not in an interactive shell exit immediatley
+[[ $- != *i* ]] && return
+
+# WSL likes to start in the root of C, so cd to home
+if [[ $(pwd) == /mnt/c/* ]]; then
+  cd ~
+fi
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -13,30 +22,33 @@ if [ -d "$secretive" ]; then
   export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 fi
 
-# SOCK="/tmp/ssh-agent-$USER-screen"
-# if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
-# then
-#     rm -f /tmp/ssh-agent-$USER-screen
-#     ln -sf $SSH_AUTH_SOCK $SOCK
-#     export SSH_AUTH_SOCK=$SOCK
-# fi
+# Keep the same ssh sock in remote sessions to keep ssh agent forwarding in TMUX between sessions
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  SOCK="/tmp/ssh-agent-$USER-screen"
+  if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
+  then
+      rm -f /tmp/ssh-agent-$USER-screen
+      ln -sf $SSH_AUTH_SOCK $SOCK
+      export SSH_AUTH_SOCK=$SOCK
+  fi
+fi
 
 export PATH="$HOME/.jenv/bin:$PATH"
 export PATH="$HOME/.cargo/env:$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/awscli@1/bin:$PATH"
-export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
 if command -v brew &> /dev/null; then
+  export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
   export PATH=$(brew --prefix llvm)/bin:$PATH
+
+  if [ -d "/Applications/Alacritty.app" ]; then
+    export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
+  fi
 fi
 
-[[ $- != *i* ]] && return
-
-if [[ $(pwd) == /mnt/c/* ]]; then
-  cd ~
-fi
+# fpath+=~/.zsh_functions
 
 # Use the VIM-like keybindings
 bindkey -v
@@ -54,6 +66,7 @@ else
     fi
 fi
 unset __conda_setup
+conda deactivate
 # <<< conda initialize <<<
 #
 
@@ -116,15 +129,36 @@ alias la='ls -la'
 alias l=ll
 alias la=l -a
 
+alias cdp='cd $(npm prefix)'
+alias cdg='cd $(git rev-parse --show-toplevel)'
+
+function cdl() {
+  local cdw=$PWD
+  while [ ! -f ./lerna.json ]; do
+    cd ..
+    if [[ "$PWD" == "$HOME" || "$PWD" == '/' ]]; then
+      cd $cdw
+      return 1
+    fi
+  done
+}
+
 alias gs='git status'
 alias gd='git diff'
 alias gdc='git diff --cached'
+alias ga='git add .'
+alias gaa='git add -A :/'
 alias gc='git commit -m '
 alias gca='git commit -a -m '
 alias gco='git checkout'
+alias gcb='git checkout -b'
 alias gpd='git pull'
-alias gpu='git push'
+alias gpu='git push -u origin HEAD'
 alias gpp='git pull && git push'
+
+function title() {
+  echo -e "\e]2;$1\007"
+}
 
 alias vim=nvim
 

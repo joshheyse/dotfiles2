@@ -4,5 +4,7 @@
   "eslint.codeAction.disableRuleComment": {
     "enable": true,
     "location": "separateLine"
-  }
+  },
+  "graphql.filetypes": ["grapql"],
+  "graphql.watcherPattern": "**/*.{graphql,gql}"
 }
