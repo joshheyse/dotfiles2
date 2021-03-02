@@ -13,10 +13,24 @@ env:
 
 window:
   padding:
-    x: 5
-    y: 5
+    x: 0
+    y: 0
+  decorations: none
 
 background_opacity: 0.875
+
+font:
+  normal:
+    family: 'MesloLGS NF'
+  bold:
+    family: 'MesloLGS NF'
+  italic:
+    family: 'MesloLGS NF'
+  bold_italic:
+    family: 'MesloLGS NF'
+  size: 11.0
+
+
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
@@ -107,17 +121,6 @@ background_opacity: 0.875
   # Scrolling distance multiplier.
   #multiplier: 3
   #
-
-font:
-  normal:
-    family: 'MesloLGS NF'
-  bold:
-    family: 'MesloLGS NF'
-  italic:
-    family: 'MesloLGS NF'
-  bold_italic:
-    family: 'MesloLGS NF'
-  size: 11.0
 
 # Font configuration
 # font:
