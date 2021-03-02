@@ -116,7 +116,6 @@ alias la='ls -la'
 alias l=ll
 alias la=l -a
 
-
 alias gs='git status'
 alias gd='git diff'
 alias gdc='git diff --cached'
@@ -126,6 +125,8 @@ alias gco='git checkout'
 alias gpd='git pull'
 alias gpu='git push'
 alias gpp='git pull && git push'
+
+alias vim=nvim
 
 # Actually install plugins, prompt user input
 if ! zplug check --verbose; then
@@ -142,7 +143,5 @@ zplug load
 
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
-
-export TERM='screen-256color'
 
 export EDITOR=vim

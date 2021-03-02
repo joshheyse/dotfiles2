@@ -31,7 +31,7 @@
 #
 #------------------------------------------------------------------------------
 #
-~/.dotfiles/.alacritty.yml,~/.alacritty.yml
+~/.dotfiles/alacritty.yml,~/.alacritty.yml
 ~/.dotfiles/editorconfig,~/.editorconfig
 ~/.dotfiles/gitattributes,~/.gitattributes
 ~/.dotfiles/p10k.zsh,~/.p10k.zsh
