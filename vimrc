@@ -247,6 +247,9 @@ function! HexMe()
 endfunction
 noremap <F8> :call HexMe()<CR>
 
+nnoremap <leader>ncr :%s///g
+
+
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
   let save_cursor = getpos(".")
@@ -456,3 +459,5 @@ autocmd BufEnter tsconfig.json :setlocal filetype=jsonc
 
 set exrc
 set secure
+
+hi Normal guibg=NONE ctermbg=NONE
