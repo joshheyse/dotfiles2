@@ -17,10 +17,10 @@ fi
 DOT_REPO="https://github.com/jheyse/dotfiles.git"
 DOT_DIR="$HOME/.dotfiles"
 
-secretive="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent"
-if [ -d "$secretive" ]; then
-  export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-fi
+# secretive="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent"
+# if [ -d "$secretive" ]; then
+#   export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+# fi
 
 # Keep the same ssh sock in remote sessions to keep ssh agent forwarding in TMUX between sessions
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -31,11 +31,20 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
       ln -sf $SSH_AUTH_SOCK $SOCK
       export SSH_AUTH_SOCK=$SOCK
   fi
+else
+  export GPG_TTY="$(tty)"
+  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  gpgconf --launch gpg-agent
+  # gpgconf --launch gpg-agent
+  # export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  # export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+  # ssh-add -l &> /dev/null
 fi
 
 export PATH="$HOME/.jenv/bin:$PATH"
 export PATH="$HOME/.cargo/env:$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/awscli@1/bin:$PATH"
+export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
@@ -61,12 +70,12 @@ if [ $? -eq 0 ]; then
 else
     if [ -f "/Users/jheyse/miniconda3/etc/profile.d/conda.sh" ]; then
         . "/Users/jheyse/miniconda3/etc/profile.d/conda.sh"
+        conda deactivate
     else
         export PATH="/Users/jheyse/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
-conda deactivate
 # <<< conda initialize <<<
 #
 

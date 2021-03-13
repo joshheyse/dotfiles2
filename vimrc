@@ -49,6 +49,9 @@ Plug 'jparise/vim-graphql'
 Plug 'nikvdp/ejs-syntax'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
+Plug 'hashivim/vim-terraform'
+
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 Plug 'dracula/vim'
 Plug 'ayu-theme/ayu-vim'
@@ -234,6 +237,9 @@ nnoremap <leader>s :%s/\V\<<C-r><C-w>\>/
 
 " Substitute under cursor in all args
 nnoremap <leader>S :argdo :%s/\V\<<C-r><C-w>\>/
+
+"prevent ex mode
+nnoremap Q <nop>
 
 " Allow moving between buffers with file changes
 set hidden
