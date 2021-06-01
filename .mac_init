@@ -1,0 +1,37 @@
+#! /usr/bin/env zsh
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+source zshrc
+dot set
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+nvm install 14
+nvm alias default 14
+
+brew install nvim alacritty exa curl wget python python3 tmux rustup mas
+brew install --cask google-chrome
+brew install --cask visual-studio-code
+brew install --cask scroll-reverser
+brew install --cask spotify
+brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
+brew install gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac
+
+vim +PlugInstall +qall
+pip3 install powerline-status yubikey-manager pynvim
+
+rustup-init
+
+# Clone alacritty
+git clone https://github.com/alacritty/alacritty.git
+cd alacritty
+# setup terminfo
+sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+# cleanup
+cd .. && rm -rf alacritty
+
+

@@ -47,6 +47,11 @@ export PATH="/usr/local/opt/awscli@1/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+
 
 if command -v brew &> /dev/null; then
   export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"

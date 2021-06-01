@@ -32,7 +32,7 @@ Plug 'fcpg/vim-osc52'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'RobertAudi/GoldenView.vim'
-Plug 'TaDaa/vimade'
+" Plug 'TaDaa/vimade'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
