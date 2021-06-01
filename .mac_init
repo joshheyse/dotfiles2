@@ -21,17 +21,20 @@ brew install --cask spotify
 brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
 brew install gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac
 
-vim +PlugInstall +qall
+nvim +PlugInstall +qall
+nvim +CocInstall +qall
+
 pip3 install powerline-status yubikey-manager pynvim
 
 rustup-init
 
+ALACRITTY_REPO=temp_alacritty
 # Clone alacritty
-git clone https://github.com/alacritty/alacritty.git
-cd alacritty
+git clone https://github.com/alacritty/alacritty.git $ALACRITTY_REPO
+cd $ALACRITTY_REPO
 # setup terminfo
 sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 # cleanup
-cd .. && rm -rf alacritty
+cd .. && rm -rf $ALACRITTY_REPO
 
 
