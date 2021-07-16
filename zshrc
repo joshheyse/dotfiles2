@@ -17,11 +17,6 @@ fi
 DOT_REPO="https://github.com/jheyse/dotfiles.git"
 DOT_DIR="$HOME/.dotfiles"
 
-# secretive="$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent"
-# if [ -d "$secretive" ]; then
-#   export SSH_AUTH_SOCK=$HOME/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-# fi
-
 # Keep the same ssh sock in remote sessions to keep ssh agent forwarding in TMUX between sessions
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SOCK="/tmp/ssh-agent-$USER-screen"
@@ -175,6 +170,7 @@ function title() {
 }
 
 alias vim=nvim
+alias vi=nvim
 
 # Actually install plugins, prompt user input
 if ! zplug check --verbose; then
@@ -192,4 +188,4 @@ zplug load
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
-export EDITOR=vim
+export EDITOR=nvim

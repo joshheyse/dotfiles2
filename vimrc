@@ -51,8 +51,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'hashivim/vim-terraform'
 
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
 Plug 'dracula/vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'

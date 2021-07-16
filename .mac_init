@@ -10,13 +10,12 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 14
 nvm alias default 14
 
-brew install nvim alacritty exa curl wget python python3 tmux rustup mas
+brew install nvim alacritty exa curl wget python python3 tmux rustup mas the_silver_searcher
 brew install --cask google-chrome
 brew install --cask visual-studio-code
 brew install --cask scroll-reverser
 brew install --cask spotify
 brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
-brew install gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac
 
 nvim +PlugInstall +qall
 nvim +CocInstall +qall

@@ -43,5 +43,7 @@
 ~/.dotfiles/vim/nvim/init.vim,~/.config/nvim/init.vim
 ~/.dotfiles/vim/coc-settings.json,~/.config/nvim/coc-settings.json
 ~/.dotfiles/powerline,~/.config/powerline
-~/.dotfiles/scdaemon.conf,~/.gnupg/scdaemon.conf
+~/.dotfiles/gnupg/scdaemon.conf,~/.gnupg/scdaemon.conf
+~/.dotfiles/gnupg/gpg.conf,~/.gnupg/gpg.conf
+~/.dotfiles/gnupg/gpg-agent.conf,~/.gnupg/gpg-agent.conf
 

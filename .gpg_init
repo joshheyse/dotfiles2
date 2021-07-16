@@ -1,0 +1,13 @@
+#! /usr/bin/env zsh
+
+brew install gnupg yubikey-personalization hopenpgp-tools ykman pinentry-mac
+
+wget https://github.com/joshheyse.gpg
+export KEYID=`gpg --import joshheyse.gpg 2>&1 | sed -n -e 's/.*\(0x[0-9A-F]*\).*/\1/p'`
+echo $KEYID
+
+gpg --list-keys --fingerprint | grep pub -A 1 | egrep -Ev "pub|--" \
+  | sed -n -e 's/Key fingerprint = \(.*\)/\1/p' | tr -d ' ' \
+  | awk 'BEGIN { FS = "\n" } ; { print $1":6:" }' | gpg --import-ownertrust
+
+
