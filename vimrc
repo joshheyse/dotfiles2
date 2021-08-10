@@ -149,6 +149,9 @@ set laststatus=2
 " Enable mouse in all modes
 set mouse=a
 
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+
 if !has("nvim")
   " Use UTF-8 without BOM
   set ttymouse=sgr
