@@ -8,11 +8,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" set background=dark
-
 call plug#begin('~/.vim/plugged')
-
-" Plug 'jsit/disco.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -31,7 +27,6 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fcpg/vim-osc52'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'RobertAudi/GoldenView.vim'
 " Plug 'TaDaa/vimade'
 
 Plug 'vim-airline/vim-airline'
@@ -43,6 +38,7 @@ Plug 'PeterRincker/vim-argumentative'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
+" Syntax highlighting
 Plug 'neoclide/jsonc.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'jparise/vim-graphql'
@@ -50,7 +46,9 @@ Plug 'nikvdp/ejs-syntax'
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'hashivim/vim-terraform'
+Plug 'udalov/kotlin-vim'
 
+" Themes
 Plug 'dracula/vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'arcticicestudio/nord-vim'
@@ -58,7 +56,6 @@ Plug 'sts10/vim-pink-moon'
 Plug 'rakr/vim-two-firewatch'
 Plug 'junegunn/seoul256.vim'
 Plug 'haishanh/night-owl.vim'
-Plug 'co1ncidence/mountaineer.vim'
 
 
 call plug#end()
@@ -226,6 +223,11 @@ nnoremap <leader>sv :source ~/.vimrc<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>r :NERDTreeFind<CR>
 
+augroup nerdtree_open
+  autocmd!
+  autocmd VimEnter * NERDTree | wincmd p
+augroup END
+
 " Toggle show trailing whitespace
 set listchars=tab:>-,trail:.,eol:$
 nmap <silent> <leader>w :set nolist!<CR>
@@ -298,7 +300,7 @@ filetype on
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-tsserver', 'coc-eslint', 'coc-python', 'coc-rls']
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-tsserver', 'coc-eslint', 'coc-python', 'coc-rls', 'coc-kotlin']
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -464,6 +466,11 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+
+" Terminal Mode
+if has('nvim')
+  tnoremap <Esc><Esc> <C-\><C-n>
+endif
 
 autocmd BufEnter tsconfig.json :setlocal filetype=jsonc
 
