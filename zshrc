@@ -42,8 +42,6 @@ export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-
-
 if command -v brew &> /dev/null; then
   export PATH="$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH"
   export PATH=$(brew --prefix llvm)/bin:$PATH
@@ -57,6 +55,16 @@ fi
 
 # Use the VIM-like keybindings
 bindkey -v
+
+# NVM Initialize
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# JENV Initialize
+if command -v jenv &> /dev/null; then
+  eval "$(jenv init -)"
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -74,10 +82,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 #
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Keybindings for substring search plugin. Maps up and down arrows.
 bindkey -M main '^[OA' history-substring-search-up

@@ -470,6 +470,10 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " Terminal Mode
 if has('nvim')
   tnoremap <Esc><Esc> <C-\><C-n>
+  tnoremap <c-h> <c-w>h
+  tnoremap <c-j> <c-w>j
+  tnoremap <c-k> <c-w>k
+  tnoremap <c-l> <c-w>l
 endif
 
 autocmd BufEnter tsconfig.json :setlocal filetype=jsonc
