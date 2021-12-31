@@ -10,12 +10,17 @@ if [[ $(pwd) == /mnt/c/* ]]; then
   cd ~
 fi
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 DOT_REPO="https://github.com/jheyse/dotfiles.git"
 DOT_DIR="$HOME/.dotfiles"
+
+export GPG_TTY=$TTY
 
 # Keep the same ssh sock in remote sessions to keep ssh agent forwarding in TMUX between sessions
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
@@ -27,7 +32,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
       export SSH_AUTH_SOCK=$SOCK
   fi
 else
-  export GPG_TTY="$(tty)"
+  # export GPG_TTY="$(tty)"
   export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
   gpgconf --launch gpg-agent
 fi
@@ -152,18 +157,42 @@ function cdl() {
   done
 }
 
-alias gs='git status'
-alias gd='git diff'
-alias gdc='git diff --cached'
 alias ga='git add .'
 alias gaa='git add -A :/'
 alias gc='git commit -m '
 alias gca='git commit -a -m '
-alias gco='git checkout'
 alias gcb='git checkout -b'
+alias gco='git checkout'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gl='git log'
 alias gpd='git pull'
-alias gpu='git push -u origin HEAD'
 alias gpp='git pull && git push'
+alias gpu='git push -u origin HEAD'
+alias gs='git status'
+
+function git_branch_clean() {
+  local permabranches="${1:-main}"
+  git branch --merged | egrep -v "(^\*|$permabranches)" | xargs git branch -d
+
+  git remote prune origin
+  read -q "REPLY?Clean remote merged branches " && echo ""
+  if [ "$REPLY" == "y"]; then
+    git branch -r --merged | egrep -v "(^\*|$permabranches)" | sed 's/origin\///' | xargs -n 1 git push origin --delete
+  fi
+
+  read -q "REPLY?Clean local unmerged branches " && echo ""
+  if [ "$REPLY" == "y"]; then
+    git branch --no-merged | egrep -v "(^\*|$permabranches)" | xargs git branch -D
+  fi
+
+  read -q "REPLY?Clean remote unmerged branches " && echo ""
+  if [ "$REPLY" == "y"]; then
+    git branch -r | egrep -v "(^\*|$permabranches)" | sed 's/origin\///' | xargs -n 1 git push origin --delete
+  fi
+
+}
+alias gbc='git_branch_clean'
 
 function title() {
   if [ -n "$TMUX" ]; then
@@ -190,6 +219,7 @@ zplug load
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=verbose
+typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true
 
 export EDITOR=nvim

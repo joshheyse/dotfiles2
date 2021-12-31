@@ -1,4 +1,4 @@
-" Make Vim more useful
+" Mak Vim more useful
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -300,7 +300,6 @@ filetype on
 autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-tsserver', 'coc-eslint', 'coc-python', 'coc-rls', 'coc-kotlin']
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -323,6 +322,8 @@ set signcolumn=yes
 highlight clear SignColumn
 autocmd ColorScheme * highlight! link SignColumn LineNr
 let g:gitgutter_set_sign_backgrounds = 0
+
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-clangd', 'coc-cmake', 'coc-css', 'coc-html', 'coc-tsserver', 'coc-eslint', 'coc-python', 'coc-rls', 'coc-kotlin']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -375,7 +376,6 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 hi CocHighlightText ctermfg=white ctermbg=darkred
-
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
