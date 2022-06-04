@@ -38,6 +38,9 @@ Plug 'PeterRincker/vim-argumentative'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 
+Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview'
+
 " Syntax highlighting
 Plug 'neoclide/jsonc.vim'
 Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -60,6 +63,11 @@ Plug 'haishanh/night-owl.vim'
 
 call plug#end()
 filetype plugin indent on    " required
+
+" LaTex
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a Preview'
+
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -262,8 +270,7 @@ function! HexMe()
 endfunction
 noremap <F8> :call HexMe()<CR>
 
-nnoremap <leader>ncr :%s///g
-
+nnoremap <leader>ncr :%s/
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
