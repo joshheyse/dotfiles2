@@ -21,13 +21,13 @@ window:
 
 font:
   normal:
-    family: 'MesloLGS NF'
+    family: 'MesloLGS Nerd Font'
   bold:
-    family: 'MesloLGS NF'
+    family: 'MesloLGS Nerd Font'
   italic:
-    family: 'MesloLGS NF'
+    family: 'MesloLGS Nerd Font'
   bold_italic:
-    family: 'MesloLGS NF'
+    family: 'MesloLGS Nerd Font'
   size: 11.0
 
 
